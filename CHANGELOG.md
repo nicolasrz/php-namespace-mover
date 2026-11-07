@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0
+
+- Skeleton for new empty PHP files: namespace from PSR-4, kind guessed from the name.
+
 ## 0.2.0
 
 - All commands grouped under *PHP Refactor Kit:* in the palette. No default shortcut: bind the commands you want.

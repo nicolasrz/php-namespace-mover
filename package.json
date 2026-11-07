@@ -1,8 +1,8 @@
 {
   "name": "php-refactor-kit",
   "displayName": "PHP Refactor Kit",
-  "description": "PhpStorm-like PHP refactorings: update namespaces when moving files, implement interface methods, remove unused imports.",
-  "version": "0.2.0",
+  "description": "PhpStorm-like PHP refactorings: update namespaces when moving files, implement interface methods, remove unused imports, new file skeleton.",
+  "version": "0.3.0",
   "publisher": "nicolasrz",
   "license": "MIT",
   "icon": "images/icon.png",
@@ -80,6 +80,26 @@
           "type": "string",
           "default": "throw new \\LogicException('Not implemented.');",
           "description": "Body of generated methods."
+        },
+        "phpRefactorKit.newFile.skeleton": {
+          "type": "boolean",
+          "default": true,
+          "description": "Fill new empty PHP files with <?php, the PSR-4 namespace and a class declaration."
+        },
+        "phpRefactorKit.newFile.defaultKind": {
+          "type": "string",
+          "enum": [
+            "class",
+            "final class",
+            "ask"
+          ],
+          "default": "class",
+          "description": "Declaration used when the kind cannot be guessed from the file name (…Interface, …Trait, Abstract…)."
+        },
+        "phpRefactorKit.newFile.strictTypes": {
+          "type": "boolean",
+          "default": false,
+          "description": "Add declare(strict_types=1); to new files."
         }
       }
     },

@@ -65,6 +65,24 @@ so it can run on save:
 "[php]": { "editor.codeActionsOnSave": { "source.organizeImports": "explicit" } }
 ```
 
+### New PHP file skeleton
+
+Creating an empty `.php` file in a PSR-4 folder fills it in, with the cursor in the body:
+
+```php
+<?php
+
+namespace App\Domain\Model;
+
+class Carnet
+{
+}
+```
+
+The kind is guessed from the name (`…Interface` → `interface`, `…Trait` → `trait`, `Abstract…` → `abstract class`),
+otherwise `phpRefactorKit.newFile.defaultKind` applies (`class`, `final class`, or `ask` to pick from a list).
+Files that already have content (copied, checked out) are never touched.
+
 ### Limitations
 
 - Only moves made inside VS Code are detected (not `mv` or `git mv` in a terminal).
@@ -81,6 +99,9 @@ so it can run on save:
 | `phpRefactorKit.namespace.preview` | `false` — show the refactoring preview before applying |
 | `phpRefactorKit.namespace.autoSave` | `true` |
 | `phpRefactorKit.implement.methodBody` | `throw new \LogicException('Not implemented.');` |
+| `phpRefactorKit.newFile.skeleton` | `true` |
+| `phpRefactorKit.newFile.defaultKind` | `class` (`final class`, `ask`) |
+| `phpRefactorKit.newFile.strictTypes` | `false` — add `declare(strict_types=1);` |
 
 ---
 
@@ -148,6 +169,24 @@ des virgules sont nettoyés élément par élément. Aussi disponible via *PHP R
 "[php]": { "editor.codeActionsOnSave": { "source.organizeImports": "explicit" } }
 ```
 
+### Squelette des nouveaux fichiers PHP
+
+Créer un fichier `.php` vide dans un dossier PSR-4 le remplit, avec le curseur dans le corps :
+
+```php
+<?php
+
+namespace App\Domain\Model;
+
+class Carnet
+{
+}
+```
+
+Le type est déduit du nom (`…Interface` → `interface`, `…Trait` → `trait`, `Abstract…` → `abstract class`), sinon
+`phpRefactorKit.newFile.defaultKind` s'applique (`class`, `final class`, ou `ask` pour choisir dans une liste).
+Un fichier qui a déjà du contenu (copié, récupéré par git) n'est jamais modifié.
+
 ### Limites
 
 - Seuls les déplacements faits dans VS Code sont détectés (pas `mv` ou `git mv` dans un terminal).
@@ -164,3 +203,6 @@ des virgules sont nettoyés élément par élément. Aussi disponible via *PHP R
 | `phpRefactorKit.namespace.preview` | `false` — aperçu de refactoring avant application |
 | `phpRefactorKit.namespace.autoSave` | `true` |
 | `phpRefactorKit.implement.methodBody` | `throw new \LogicException('Not implemented.');` |
+| `phpRefactorKit.newFile.skeleton` | `true` |
+| `phpRefactorKit.newFile.defaultKind` | `class` (`final class`, `ask`) |
+| `phpRefactorKit.newFile.strictTypes` | `false` — add `declare(strict_types=1);` |
