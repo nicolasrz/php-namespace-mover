@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.0
+
+- Remove unused imports (`Ctrl+Alt+O`, *Organize Imports*, on save).
+- Targeted edits when lines are removed, so the cursor stays in place.
+
 ## 0.1.1
 
 - Extension icon, MIT license, Marketplace keywords.

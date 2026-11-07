@@ -1,8 +1,8 @@
 {
   "name": "php-refactor-kit",
   "displayName": "PHP Refactor Kit",
-  "description": "PhpStorm-like PHP refactorings: update namespaces when moving files, implement interface methods.",
-  "version": "0.1.1",
+  "description": "PhpStorm-like PHP refactorings: update namespaces when moving files, implement interface methods, remove unused imports.",
+  "version": "0.2.0",
   "publisher": "nicolasrz",
   "license": "MIT",
   "icon": "images/icon.png",
@@ -30,7 +30,10 @@
     "laravel",
     "implement",
     "interface",
-    "composer"
+    "composer",
+    "imports",
+    "unused",
+    "organize imports"
   ],
   "engines": {
     "vscode": "^1.90.0"
@@ -85,6 +88,11 @@
         "command": "phpRefactorKit.implementMethods",
         "title": "Implement methods",
         "category": "PHP"
+      },
+      {
+        "command": "phpRefactorKit.removeUnusedImports",
+        "title": "Remove unused imports",
+        "category": "PHP"
       }
     ],
     "menus": {
@@ -92,9 +100,20 @@
         {
           "command": "phpRefactorKit.implementMethods",
           "when": "editorLangId == php"
+        },
+        {
+          "command": "phpRefactorKit.removeUnusedImports",
+          "when": "editorLangId == php"
         }
       ]
-    }
+    },
+    "keybindings": [
+      {
+        "command": "phpRefactorKit.removeUnusedImports",
+        "key": "ctrl+alt+o",
+        "when": "editorTextFocus && editorLangId == php"
+      }
+    ]
   },
   "scripts": {
     "compile": "tsc -p .",

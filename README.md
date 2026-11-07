@@ -32,6 +32,17 @@ Interfaces are looked up in the project and in `vendor/` (through the Composer a
 parent classes and traits. Required `use` statements are added. Common built-in interfaces
 (`Countable`, `ArrayAccess`, `IteratorAggregate`, `JsonSerializable`, `Stringable`…) are supported.
 
+### Remove unused imports
+
+`Ctrl+Alt+O` (like PhpStorm's *Optimize imports*; `Ctrl+Option+O` on macOS) removes the `use` statements that are
+not referenced in the code or in docblocks (`@param`, `@var`, `@throws`…). Grouped and comma-separated imports
+are trimmed item by item. Also available as *PHP: Remove unused imports* and through VS Code's *Organize Imports*,
+so it can run on save:
+
+```json
+"[php]": { "editor.codeActionsOnSave": { "source.organizeImports": "explicit" } }
+```
+
 ### Limitations
 
 - Only moves made inside VS Code are detected (not `mv` or `git mv` in a terminal).
@@ -80,6 +91,17 @@ public function find(int $id): ?User
 Les interfaces sont trouvées dans le projet et dans `vendor/` (via l'autoload Composer), interfaces héritées,
 classes parentes et traits compris. Les `use` nécessaires sont ajoutés. Les interfaces natives courantes
 (`Countable`, `ArrayAccess`, `IteratorAggregate`, `JsonSerializable`, `Stringable`…) sont connues.
+
+### Supprimer les imports inutilisés
+
+`Ctrl+Alt+O` (comme *Optimize imports* de PhpStorm ; `Ctrl+Option+O` sur macOS) supprime les `use` qui ne sont
+référencés ni dans le code ni dans les docblocks (`@param`, `@var`, `@throws`…). Les imports groupés ou séparés par
+des virgules sont nettoyés élément par élément. Aussi disponible via *PHP: Remove unused imports* et via
+*Organize Imports* de VS Code, donc utilisable à l'enregistrement :
+
+```json
+"[php]": { "editor.codeActionsOnSave": { "source.organizeImports": "explicit" } }
+```
 
 ### Limites
 
