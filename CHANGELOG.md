@@ -3,6 +3,7 @@
 ## 0.3.0
 
 - Skeleton for new empty PHP files: namespace from PSR-4, kind guessed from the name.
+- Shorter README.
 
 ## 0.2.0
 
