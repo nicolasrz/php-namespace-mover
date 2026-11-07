@@ -6,18 +6,17 @@
 
 The PhpStorm PHP refactorings that VS Code is missing.
 
-Every action is in the command palette under **PHP Refactor Kit:**. *PHP Refactor Kit: Menu* lists only the actions
-that make sense in the current file (*Implement methods*, *Remove unused imports*, *Fix namespace*). They also show up
-in VS Code's quick fix menu (`Cmd+.` / `Ctrl+.`).
+Every action is in the command palette under **PHP Refactor Kit:** (*Implement methods*, *Remove unused imports*,
+*Fix namespace*). The relevant ones also show up in VS Code's quick fix menu (`Cmd+.` / `Ctrl+.`).
 
 No shortcut is set by default, so nothing clashes with your keyboard layout or other extensions. To get one, add it in
 *Preferences: Open Keyboard Shortcuts (JSON)*, for example:
 
 ```json
-{ "key": "ctrl+alt+o", "command": "phpRefactorKit.menu", "when": "editorLangId == php" }
+{ "key": "ctrl+alt+o", "command": "phpRefactorKit.removeUnusedImports", "when": "editorLangId == php" }
 ```
 
-Commands: `phpRefactorKit.menu`, `phpRefactorKit.implementMethods`, `phpRefactorKit.removeUnusedImports`,
+Commands: `phpRefactorKit.implementMethods`, `phpRefactorKit.removeUnusedImports`,
 `phpRefactorKit.fixNamespace`.
 
 ### Update namespaces when moving files
@@ -35,7 +34,7 @@ the same update.
 ### Implement methods
 
 On the declaration of a class that implements an interface or extends an abstract class, `Cmd+.` / `Ctrl+.` offers
-**Implement methods** (also in the command palette and the menu).
+**Implement methods** (also in the command palette).
 Each missing method is generated with its signature and a body that throws an exception:
 
 ```php
@@ -83,18 +82,18 @@ so it can run on save:
 
 Les refactorings PHP de PhpStorm qui manquent à VS Code.
 
-Toutes les actions sont dans la palette de commandes sous **PHP Refactor Kit:**. *PHP Refactor Kit: Menu* liste
-uniquement les actions pertinentes dans le fichier courant (*Implement methods*, *Remove unused imports*,
-*Fix namespace*). Elles apparaissent aussi dans le menu des corrections rapides de VS Code (`Cmd+.` / `Ctrl+.`).
+Toutes les actions sont dans la palette de commandes sous **PHP Refactor Kit:** (*Implement methods*,
+*Remove unused imports*, *Fix namespace*). Celles qui sont pertinentes apparaissent aussi dans le menu des corrections
+rapides de VS Code (`Cmd+.` / `Ctrl+.`).
 
 Aucun raccourci n'est défini par défaut, pour ne pas entrer en conflit avec votre clavier ou d'autres extensions. Pour
 en ajouter un, dans *Preferences: Open Keyboard Shortcuts (JSON)*, par exemple :
 
 ```json
-{ "key": "ctrl+alt+o", "command": "phpRefactorKit.menu", "when": "editorLangId == php" }
+{ "key": "ctrl+alt+o", "command": "phpRefactorKit.removeUnusedImports", "when": "editorLangId == php" }
 ```
 
-Commandes : `phpRefactorKit.menu`, `phpRefactorKit.implementMethods`, `phpRefactorKit.removeUnusedImports`,
+Commandes : `phpRefactorKit.implementMethods`, `phpRefactorKit.removeUnusedImports`,
 `phpRefactorKit.fixNamespace`.
 
 ### Namespace mis à jour au déplacement
@@ -112,7 +111,7 @@ applique la même mise à jour.
 ### Implémenter les méthodes
 
 Sur la déclaration d'une classe qui implémente une interface ou étend une classe abstraite, `Cmd+.` / `Ctrl+.` propose
-**Implement methods** (aussi dans la palette et le menu).
+**Implement methods** (aussi dans la palette).
 Chaque méthode manquante est générée avec sa signature et un corps qui lève une exception :
 
 ```php

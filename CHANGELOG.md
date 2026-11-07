@@ -2,9 +2,9 @@
 
 ## 0.2.0
 
-- *PHP Refactor Kit: Menu* command, showing only the relevant actions. No default shortcut: bind the commands you want.
-- Remove unused imports (menu, quick fix, *Organize Imports*, on save).
-- *Fix namespace* when a file's namespace doesn't match its folder.
+- All commands grouped under *PHP Refactor Kit:* in the palette. No default shortcut: bind the commands you want.
+- Remove unused imports (palette, quick fix, *Organize Imports*, on save).
+- *Fix namespace* command when a file's namespace doesn't match its folder.
 - Kit actions available from `Cmd+.` anywhere in the class.
 - Targeted edits when lines are removed, so the cursor stays in place.
 

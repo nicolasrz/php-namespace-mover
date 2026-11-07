@@ -47,14 +47,14 @@ function provideCodeActions(document: vscode.TextDocument, range: vscode.Range, 
   return [action];
 }
 
-export function implement(document: vscode.TextDocument): Implementation | undefined {
+function implement(document: vscode.TextDocument): Implementation | undefined {
   const body = vscode.workspace
     .getConfiguration('phpRefactorKit.implement')
     .get<string>('methodBody', "throw new \\LogicException('Not implemented.');");
   return implementMissingMethods(document.getText(), classReader(document.uri), body);
 }
 
-export function toWorkspaceEdit(document: vscode.TextDocument, implementation: Implementation): vscode.WorkspaceEdit {
+function toWorkspaceEdit(document: vscode.TextDocument, implementation: Implementation): vscode.WorkspaceEdit {
   const edit = new vscode.WorkspaceEdit();
   for (const e of lineEdits(document.getText(), implementation.text)) {
     edit.replace(document.uri, new vscode.Range(e.startLine, e.startCharacter, e.endLine, e.endCharacter), e.text);

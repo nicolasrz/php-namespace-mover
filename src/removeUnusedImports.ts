@@ -37,7 +37,7 @@ function provideCodeActions(
   return [action];
 }
 
-export function buildEdit(document: vscode.TextDocument): { edit: vscode.WorkspaceEdit; removed: string[] } {
+function buildEdit(document: vscode.TextDocument): { edit: vscode.WorkspaceEdit; removed: string[] } {
   const before = document.getText();
   const { text, removed } = removeUnusedImports(before);
   const edit = new vscode.WorkspaceEdit();

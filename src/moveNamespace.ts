@@ -17,6 +17,14 @@ export function registerMoveNamespace(context: vscode.ExtensionContext): void {
         vscode.window.showErrorMessage(`PHP Refactor Kit : ${error instanceof Error ? error.message : String(error)}`);
       }
     }),
+    vscode.commands.registerTextEditorCommand('phpRefactorKit.fixNamespace', async (editor) => {
+      const move = await namespaceFix(editor.document.uri);
+      if (!move) {
+        vscode.window.setStatusBarMessage('Namespace already matches the folder', 3000);
+        return;
+      }
+      await applyClassMoves(new Map([[editor.document.uri.fsPath, move]]));
+    }),
   );
 }
 
@@ -33,11 +41,11 @@ async function onFilesMoved(files: readonly FileRename[]): Promise<void> {
 }
 
 /** Classe dont le namespace déclaré ne correspond pas à son dossier, par exemple après un `git mv`. */
-export async function namespaceFix(uri: vscode.Uri): Promise<ClassMove | undefined> {
+async function namespaceFix(uri: vscode.Uri): Promise<ClassMove | undefined> {
   return resolveMove(uri.fsPath, uri);
 }
 
-export async function applyClassMoves(movesByPath: ReadonlyMap<string, ClassMove>): Promise<void> {
+async function applyClassMoves(movesByPath: ReadonlyMap<string, ClassMove>): Promise<void> {
   const config = vscode.workspace.getConfiguration('phpRefactorKit.namespace');
   if (!movesByPath.size) return;
   const moves = [...movesByPath.values()];
