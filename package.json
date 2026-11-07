@@ -1,7 +1,7 @@
 {
-  "name": "php-namespace-mover",
-  "displayName": "PHP Namespace Mover",
-  "description": "Met à jour le namespace PHP (PSR-4) et ses références quand on déplace un fichier, comme PhpStorm.",
+  "name": "php-refactor-kit",
+  "displayName": "PHP Refactor Kit",
+  "description": "Refactorings PHP façon PhpStorm : namespace mis à jour au déplacement de fichier, implémentation des méthodes d’interface.",
   "version": "0.1.0",
   "publisher": "nicolasrz",
   "engines": {
@@ -12,39 +12,60 @@
     "Other"
   ],
   "activationEvents": [
-    "workspaceContains:**/composer.json"
+    "workspaceContains:**/composer.json",
+    "onLanguage:php"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "configuration": {
-      "title": "PHP Namespace Mover",
+      "title": "PHP Refactor Kit",
       "properties": {
-        "phpNamespaceMover.enabled": {
+        "phpRefactorKit.namespace.updateOnMove": {
           "type": "boolean",
           "default": true,
           "description": "Mettre à jour les namespaces lors d'un déplacement de fichier PHP."
         },
-        "phpNamespaceMover.exclude": {
+        "phpRefactorKit.namespace.exclude": {
           "type": "string",
           "default": "**/{vendor,node_modules,var,.git}/**",
           "description": "Glob des fichiers ignorés lors de la mise à jour des références."
         },
-        "phpNamespaceMover.referenceFiles": {
+        "phpRefactorKit.namespace.referenceFiles": {
           "type": "string",
           "default": "**/*.{yaml,yml,xml,neon}",
           "description": "Fichiers non-PHP dans lesquels remplacer les FQCN (config Symfony, mappings Doctrine…). Vide pour désactiver."
         },
-        "phpNamespaceMover.preview": {
+        "phpRefactorKit.namespace.preview": {
           "type": "boolean",
           "default": false,
           "description": "Afficher l'aperçu de refactoring avant d'appliquer les modifications."
         },
-        "phpNamespaceMover.autoSave": {
+        "phpRefactorKit.namespace.autoSave": {
           "type": "boolean",
           "default": true,
           "description": "Enregistrer les fichiers modifiés."
+        },
+        "phpRefactorKit.implement.methodBody": {
+          "type": "string",
+          "default": "throw new \\LogicException('Not implemented.');",
+          "description": "Corps des méthodes générées."
         }
       }
+    },
+    "commands": [
+      {
+        "command": "phpRefactorKit.implementMethods",
+        "title": "Implémenter les méthodes",
+        "category": "PHP"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "phpRefactorKit.implementMethods",
+          "when": "editorLangId == php"
+        }
+      ]
     }
   },
   "scripts": {
@@ -61,6 +82,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nicolasrz/php-namespace-mover"
+    "url": "https://github.com/nicolasrz/php-refactor-kit"
   }
 }
