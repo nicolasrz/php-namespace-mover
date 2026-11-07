@@ -8,3 +8,4 @@ tsconfig.json
 CLAUDE.md
 .idea/**
 images/icon.svg
+images/demo-*.gif

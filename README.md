@@ -21,6 +21,8 @@ Commands: `phpRefactorKit.implementMethods`, `phpRefactorKit.removeUnusedImports
 
 ### Update namespaces when moving files
 
+![Moving a class updates its namespace and references](images/demo-move.gif)
+
 When you move (or rename) a PHP file or folder from the explorer, the extension updates:
 
 - the file's `namespace`, computed from the PSR-4 rules (`autoload` / `autoload-dev`) of the nearest `composer.json`;
@@ -32,6 +34,8 @@ If a file's namespace no longer matches its folder (after a `git mv`, a copy-pas
 the same update.
 
 ### Implement methods
+
+![Implement methods](images/demo-implement.gif)
 
 On the declaration of a class that implements an interface or extends an abstract class, `Cmd+.` / `Ctrl+.` offers
 **Implement methods** (also in the command palette).
@@ -49,6 +53,8 @@ parent classes and traits. Required `use` statements are added. Common built-in 
 (`Countable`, `ArrayAccess`, `IteratorAggregate`, `JsonSerializable`, `Stringable`…) are supported.
 
 ### Remove unused imports
+
+![Remove unused imports](images/demo-imports.gif)
 
 Removes the `use` statements that are
 not referenced in the code or in docblocks (`@param`, `@var`, `@throws`…). Grouped and comma-separated imports
@@ -98,6 +104,8 @@ Commandes : `phpRefactorKit.implementMethods`, `phpRefactorKit.removeUnusedImpor
 
 ### Namespace mis à jour au déplacement
 
+![Déplacer une classe met à jour son namespace et ses références](images/demo-move.gif)
+
 Quand on déplace (ou renomme) un fichier ou un dossier PHP depuis l'explorateur, l'extension met à jour :
 
 - le `namespace` du fichier, calculé depuis les règles PSR-4 (`autoload` / `autoload-dev`) du `composer.json` le plus proche ;
@@ -109,6 +117,8 @@ Si le namespace d'un fichier ne correspond plus à son dossier (après un `git m
 applique la même mise à jour.
 
 ### Implémenter les méthodes
+
+![Implémenter les méthodes](images/demo-implement.gif)
 
 Sur la déclaration d'une classe qui implémente une interface ou étend une classe abstraite, `Cmd+.` / `Ctrl+.` propose
 **Implement methods** (aussi dans la palette).
@@ -126,6 +136,8 @@ classes parentes et traits compris. Les `use` nécessaires sont ajoutés. Les in
 (`Countable`, `ArrayAccess`, `IteratorAggregate`, `JsonSerializable`, `Stringable`…) sont connues.
 
 ### Supprimer les imports inutilisés
+
+![Supprimer les imports inutilisés](images/demo-imports.gif)
 
 Supprime les `use` qui ne sont
 référencés ni dans le code ni dans les docblocks (`@param`, `@var`, `@throws`…). Les imports groupés ou séparés par

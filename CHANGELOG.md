@@ -6,6 +6,7 @@
 - Remove unused imports (palette, quick fix, *Organize Imports*, on save).
 - *Fix namespace* command when a file's namespace doesn't match its folder.
 - Kit actions available from `Cmd+.` anywhere in the class.
+- Demo GIFs in the README.
 - Targeted edits when lines are removed, so the cursor stays in place.
 
 ## 0.1.1
