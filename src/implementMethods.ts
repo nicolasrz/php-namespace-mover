@@ -18,10 +18,10 @@ export function registerImplementMethods(context: vscode.ExtensionContext): void
     vscode.commands.registerTextEditorCommand(COMMAND, async (editor) => {
       const implementation = implement(editor.document);
       if (implementation?.unresolved.length) {
-        vscode.window.showWarningMessage(`Introuvable(s) : ${implementation.unresolved.join(', ')}`);
+        vscode.window.showWarningMessage(`Not found: ${implementation.unresolved.join(', ')}`);
       }
       if (!implementation?.methods.length) {
-        vscode.window.setStatusBarMessage('Aucune méthode à implémenter', 3000);
+        vscode.window.setStatusBarMessage('No methods to implement', 3000);
         return;
       }
       await vscode.workspace.applyEdit(toWorkspaceEdit(editor.document, implementation));
@@ -38,7 +38,7 @@ function provideCodeActions(document: vscode.TextDocument, range: vscode.Range):
   const implementation = implement(document);
   if (!implementation?.methods.length) return [];
   const action = new vscode.CodeAction(
-    `Implémenter les méthodes (${implementation.methods.join(', ')})`,
+    `Implement methods (${implementation.methods.join(', ')})`,
     vscode.CodeActionKind.QuickFix,
   );
   action.edit = toWorkspaceEdit(document, implementation);

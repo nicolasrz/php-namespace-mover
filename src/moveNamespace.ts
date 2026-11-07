@@ -65,7 +65,7 @@ async function onFilesMoved(files: readonly FileRename[]): Promise<void> {
   for (const { uri, before, after } of changes) {
     for (const e of lineEdits(before, after)) {
       const range = new vscode.Range(e.startLine, e.startCharacter, e.endLine, e.endCharacter);
-      edit.replace(uri, range, e.text, { label: 'Mise à jour du namespace PHP', needsConfirmation });
+      edit.replace(uri, range, e.text, { label: 'Update PHP namespace', needsConfirmation });
     }
   }
   if (!(await vscode.workspace.applyEdit(edit))) return;
@@ -73,7 +73,7 @@ async function onFilesMoved(files: readonly FileRename[]): Promise<void> {
   if (config.get<boolean>('autoSave', true)) {
     await Promise.all(changes.map(async ({ uri }) => (await vscode.workspace.openTextDocument(uri)).save()));
   }
-  vscode.window.setStatusBarMessage(`$(check) Namespace PHP : ${changes.length} fichier(s) mis à jour`, 5000);
+  vscode.window.setStatusBarMessage(`$(check) PHP namespace: ${changes.length} file(s) updated`, 5000);
 }
 
 async function expandToPhpFiles(files: readonly FileRename[]): Promise<{ oldPath: string; newUri: vscode.Uri }[]> {

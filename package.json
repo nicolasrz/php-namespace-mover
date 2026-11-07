@@ -1,9 +1,37 @@
 {
   "name": "php-refactor-kit",
   "displayName": "PHP Refactor Kit",
-  "description": "Refactorings PHP façon PhpStorm : namespace mis à jour au déplacement de fichier, implémentation des méthodes d’interface.",
-  "version": "0.1.0",
+  "description": "PhpStorm-like PHP refactorings: update namespaces when moving files, implement interface methods.",
+  "version": "0.1.1",
   "publisher": "nicolasrz",
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#4F5B93",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicolasrz/php-refactor-kit"
+  },
+  "homepage": "https://github.com/nicolasrz/php-refactor-kit#readme",
+  "bugs": {
+    "url": "https://github.com/nicolasrz/php-refactor-kit/issues"
+  },
+  "keywords": [
+    "php",
+    "namespace",
+    "psr-4",
+    "refactor",
+    "refactoring",
+    "phpstorm",
+    "move",
+    "symfony",
+    "laravel",
+    "implement",
+    "interface",
+    "composer"
+  ],
   "engines": {
     "vscode": "^1.90.0"
   },
@@ -23,39 +51,39 @@
         "phpRefactorKit.namespace.updateOnMove": {
           "type": "boolean",
           "default": true,
-          "description": "Mettre à jour les namespaces lors d'un déplacement de fichier PHP."
+          "description": "Update namespaces when a PHP file or folder is moved."
         },
         "phpRefactorKit.namespace.exclude": {
           "type": "string",
           "default": "**/{vendor,node_modules,var,.git}/**",
-          "description": "Glob des fichiers ignorés lors de la mise à jour des références."
+          "description": "Glob of files ignored when updating references."
         },
         "phpRefactorKit.namespace.referenceFiles": {
           "type": "string",
           "default": "**/*.{yaml,yml,xml,neon}",
-          "description": "Fichiers non-PHP dans lesquels remplacer les FQCN (config Symfony, mappings Doctrine…). Vide pour désactiver."
+          "description": "Non-PHP files in which FQCNs are replaced (Symfony config, Doctrine mappings…). Empty to disable."
         },
         "phpRefactorKit.namespace.preview": {
           "type": "boolean",
           "default": false,
-          "description": "Afficher l'aperçu de refactoring avant d'appliquer les modifications."
+          "description": "Show the refactoring preview before applying changes."
         },
         "phpRefactorKit.namespace.autoSave": {
           "type": "boolean",
           "default": true,
-          "description": "Enregistrer les fichiers modifiés."
+          "description": "Save modified files."
         },
         "phpRefactorKit.implement.methodBody": {
           "type": "string",
           "default": "throw new \\LogicException('Not implemented.');",
-          "description": "Corps des méthodes générées."
+          "description": "Body of generated methods."
         }
       }
     },
     "commands": [
       {
         "command": "phpRefactorKit.implementMethods",
-        "title": "Implémenter les méthodes",
+        "title": "Implement methods",
         "category": "PHP"
       }
     ],
@@ -72,16 +100,12 @@
     "compile": "tsc -p .",
     "watch": "tsc -watch -p .",
     "test": "tsc -p . && node --test out/test/*.test.js",
-    "package": "vsce package --skip-license"
+    "package": "vsce package"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "@types/vscode": "~1.90.0",
     "@vscode/vsce": "^3.0.0",
     "typescript": "^5.5.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nicolasrz/php-refactor-kit"
   }
 }

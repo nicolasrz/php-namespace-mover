@@ -1,20 +1,73 @@
 # PHP Refactor Kit
 
+[English](#english) · [Français](#français)
+
+## English
+
+The PhpStorm PHP refactorings that VS Code is missing.
+
+### Update namespaces when moving files
+
+When you move (or rename) a PHP file or folder from the explorer, the extension updates:
+
+- the file's `namespace`, computed from the PSR-4 rules (`autoload` / `autoload-dev`) of the nearest `composer.json`;
+- the class name, if the file was renamed;
+- `use` statements, FQCNs (`\App\...`) and escaped strings (`'App\\...'`) across the project, including YAML/XML/NEON files (Symfony services, Doctrine mappings…);
+- the `use` statements that become necessary for classes that shared the old namespace and were therefore used without an import.
+
+### Implement methods
+
+On the declaration of a class that implements an interface or extends an abstract class, `Cmd+.` / `Ctrl+.` offers
+**Implement methods** (also in the command palette: *PHP: Implement methods*).
+Each missing method is generated with its signature and a body that throws an exception:
+
+```php
+public function find(int $id): ?User
+{
+    throw new \LogicException('Not implemented.');
+}
+```
+
+Interfaces are looked up in the project and in `vendor/` (through the Composer autoloader), including parent interfaces,
+parent classes and traits. Required `use` statements are added. Common built-in interfaces
+(`Countable`, `ArrayAccess`, `IteratorAggregate`, `JsonSerializable`, `Stringable`…) are supported.
+
+### Limitations
+
+- Only moves made inside VS Code are detected (not `mv` or `git mv` in a terminal).
+- Lightweight lexical analysis, no AST: grouped imports (`use App\{A, B};`) are not rewritten.
+- A short class name appearing in a comment may add an unneeded `use` when moving a file.
+
+### Settings
+
+| Setting | Default |
+|---|---|
+| `phpRefactorKit.namespace.updateOnMove` | `true` |
+| `phpRefactorKit.namespace.exclude` | `**/{vendor,node_modules,var,.git}/**` |
+| `phpRefactorKit.namespace.referenceFiles` | `**/*.{yaml,yml,xml,neon}` |
+| `phpRefactorKit.namespace.preview` | `false` — show the refactoring preview before applying |
+| `phpRefactorKit.namespace.autoSave` | `true` |
+| `phpRefactorKit.implement.methodBody` | `throw new \LogicException('Not implemented.');` |
+
+---
+
+## Français
+
 Les refactorings PHP de PhpStorm qui manquent à VS Code.
 
-## Namespace mis à jour au déplacement
+### Namespace mis à jour au déplacement
 
 Quand on déplace (ou renomme) un fichier ou un dossier PHP depuis l'explorateur, l'extension met à jour :
 
 - le `namespace` du fichier, calculé depuis les règles PSR-4 (`autoload` / `autoload-dev`) du `composer.json` le plus proche ;
 - le nom de la classe si le fichier a été renommé ;
-- les `use`, FQCN (`\App\...`) et chaînes échappées (`'App\\...'`) dans tout le projet, YAML/XML/NEON compris ;
-- les `use` à ajouter pour les classes qui partageaient le namespace et étaient donc utilisées sans import.
+- les `use`, FQCN (`\App\...`) et chaînes échappées (`'App\\...'`) dans tout le projet, YAML/XML/NEON compris (services Symfony, mappings Doctrine…) ;
+- les `use` à ajouter pour les classes qui partageaient l'ancien namespace et étaient donc utilisées sans import.
 
-## Implémenter les méthodes
+### Implémenter les méthodes
 
-Sur la déclaration d'une classe qui implémente une interface ou étend une classe abstraite, `Cmd+.` propose
-**Implémenter les méthodes** (aussi disponible dans la palette : *PHP: Implémenter les méthodes*).
+Sur la déclaration d'une classe qui implémente une interface ou étend une classe abstraite, `Cmd+.` / `Ctrl+.` propose
+**Implement methods** (aussi dans la palette : *PHP: Implement methods*).
 Chaque méthode manquante est générée avec sa signature et un corps qui lève une exception :
 
 ```php
@@ -28,13 +81,13 @@ Les interfaces sont trouvées dans le projet et dans `vendor/` (via l'autoload C
 classes parentes et traits compris. Les `use` nécessaires sont ajoutés. Les interfaces natives courantes
 (`Countable`, `ArrayAccess`, `IteratorAggregate`, `JsonSerializable`, `Stringable`…) sont connues.
 
-## Limites
+### Limites
 
 - Seuls les déplacements faits dans VS Code sont détectés (pas `mv` ou `git mv` dans un terminal).
 - Analyse lexicale légère, pas d'AST : les `use` groupés (`use App\{A, B};`) ne sont pas réécrits.
 - Un nom court présent dans un commentaire peut provoquer un `use` superflu lors d'un déplacement.
 
-## Réglages
+### Réglages
 
 | Réglage | Défaut |
 |---|---|
