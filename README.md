@@ -21,6 +21,8 @@ Namespaces are computed from the PSR-4 rules of your `composer.json`.
 
 ![Remove unused imports](images/demo-imports.gif)
 
+![New PHP file](images/demo-create-file.gif)
+
 ## Français
 
 Comme PhpStorm, cette extension permet de :
