@@ -3,7 +3,7 @@
   "displayName": "PHP Namespace Mover",
   "description": "Met à jour le namespace PHP (PSR-4) et ses références quand on déplace un fichier, comme PhpStorm.",
   "version": "0.1.0",
-  "publisher": "nicolasruiz",
+  "publisher": "nicolasrz",
   "engines": {
     "vscode": "^1.90.0"
   },
