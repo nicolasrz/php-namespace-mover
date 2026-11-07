@@ -29,6 +29,16 @@ async function onFilesMoved(files: readonly FileRename[]): Promise<void> {
     const move = await resolveMove(oldPath, newUri);
     if (move) movesByPath.set(newUri.fsPath, move);
   }
+  await applyClassMoves(movesByPath);
+}
+
+/** Classe dont le namespace déclaré ne correspond pas à son dossier, par exemple après un `git mv`. */
+export async function namespaceFix(uri: vscode.Uri): Promise<ClassMove | undefined> {
+  return resolveMove(uri.fsPath, uri);
+}
+
+export async function applyClassMoves(movesByPath: ReadonlyMap<string, ClassMove>): Promise<void> {
+  const config = vscode.workspace.getConfiguration('phpRefactorKit.namespace');
   if (!movesByPath.size) return;
   const moves = [...movesByPath.values()];
   const oldNames = moves.map((m) => splitFqcn(m.oldFqcn).name);

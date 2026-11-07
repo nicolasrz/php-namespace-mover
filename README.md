@@ -6,6 +6,10 @@
 
 The PhpStorm PHP refactorings that VS Code is missing.
 
+**One shortcut for everything: `Ctrl+Alt+O`** (`Ctrl+Option+O` on macOS) opens the Refactor Kit menu, listing only
+the actions that make sense in the current file: *Implement methods*, *Remove unused imports*, *Fix namespace*.
+The same actions also show up in VS Code's quick fix menu (`Cmd+.` / `Ctrl+.`).
+
 ### Update namespaces when moving files
 
 When you move (or rename) a PHP file or folder from the explorer, the extension updates:
@@ -14,6 +18,9 @@ When you move (or rename) a PHP file or folder from the explorer, the extension 
 - the class name, if the file was renamed;
 - `use` statements, FQCNs (`\App\...`) and escaped strings (`'App\\...'`) across the project, including YAML/XML/NEON files (Symfony services, Doctrine mappings…);
 - the `use` statements that become necessary for classes that shared the old namespace and were therefore used without an import.
+
+If a file's namespace no longer matches its folder (after a `git mv`, a copy-paste…), *Fix namespace* in the menu
+applies the same update.
 
 ### Implement methods
 
@@ -34,7 +41,7 @@ parent classes and traits. Required `use` statements are added. Common built-in 
 
 ### Remove unused imports
 
-`Ctrl+Alt+O` (like PhpStorm's *Optimize imports*; `Ctrl+Option+O` on macOS) removes the `use` statements that are
+From the menu, removes the `use` statements that are
 not referenced in the code or in docblocks (`@param`, `@var`, `@throws`…). Grouped and comma-separated imports
 are trimmed item by item. Also available as *PHP: Remove unused imports* and through VS Code's *Organize Imports*,
 so it can run on save:
@@ -66,6 +73,10 @@ so it can run on save:
 
 Les refactorings PHP de PhpStorm qui manquent à VS Code.
 
+**Un seul raccourci pour tout : `Ctrl+Alt+O`** (`Ctrl+Option+O` sur macOS) ouvre le menu du kit, avec uniquement
+les actions pertinentes dans le fichier courant : *Implement methods*, *Remove unused imports*, *Fix namespace*.
+Les mêmes actions apparaissent aussi dans le menu des corrections rapides de VS Code (`Cmd+.` / `Ctrl+.`).
+
 ### Namespace mis à jour au déplacement
 
 Quand on déplace (ou renomme) un fichier ou un dossier PHP depuis l'explorateur, l'extension met à jour :
@@ -74,6 +85,9 @@ Quand on déplace (ou renomme) un fichier ou un dossier PHP depuis l'explorateur
 - le nom de la classe si le fichier a été renommé ;
 - les `use`, FQCN (`\App\...`) et chaînes échappées (`'App\\...'`) dans tout le projet, YAML/XML/NEON compris (services Symfony, mappings Doctrine…) ;
 - les `use` à ajouter pour les classes qui partageaient l'ancien namespace et étaient donc utilisées sans import.
+
+Si le namespace d'un fichier ne correspond plus à son dossier (après un `git mv`, un copier-coller…), *Fix namespace*
+dans le menu applique la même mise à jour.
 
 ### Implémenter les méthodes
 
@@ -94,7 +108,7 @@ classes parentes et traits compris. Les `use` nécessaires sont ajoutés. Les in
 
 ### Supprimer les imports inutilisés
 
-`Ctrl+Alt+O` (comme *Optimize imports* de PhpStorm ; `Ctrl+Option+O` sur macOS) supprime les `use` qui ne sont
+Depuis le menu, supprime les `use` qui ne sont
 référencés ni dans le code ni dans les docblocks (`@param`, `@var`, `@throws`…). Les imports groupés ou séparés par
 des virgules sont nettoyés élément par élément. Aussi disponible via *PHP: Remove unused imports* et via
 *Organize Imports* de VS Code, donc utilisable à l'enregistrement :

@@ -8,7 +8,7 @@ const TITLE = 'Remove unused imports';
 export function registerRemoveUnusedImports(context: vscode.ExtensionContext): void {
   context.subscriptions.push(
     vscode.languages.registerCodeActionsProvider({ language: 'php' }, { provideCodeActions }, {
-      providedCodeActionKinds: [vscode.CodeActionKind.SourceOrganizeImports],
+      providedCodeActionKinds: [vscode.CodeActionKind.SourceOrganizeImports, vscode.CodeActionKind.QuickFix],
     }),
     vscode.commands.registerTextEditorCommand(COMMAND, async (editor) => {
       const { edit, removed } = buildEdit(editor.document);
@@ -22,15 +22,22 @@ export function registerRemoveUnusedImports(context: vscode.ExtensionContext): v
   );
 }
 
-function provideCodeActions(document: vscode.TextDocument): vscode.CodeAction[] {
+function provideCodeActions(
+  document: vscode.TextDocument,
+  _range: vscode.Range,
+  context: vscode.CodeActionContext,
+): vscode.CodeAction[] {
+  const organize = context.only?.contains(vscode.CodeActionKind.SourceOrganizeImports) ?? false;
+  if (!organize && context.triggerKind !== vscode.CodeActionTriggerKind.Invoke) return [];
   const { edit, removed } = buildEdit(document);
   if (!removed.length) return [];
-  const action = new vscode.CodeAction(TITLE, vscode.CodeActionKind.SourceOrganizeImports);
+  const kind = organize ? vscode.CodeActionKind.SourceOrganizeImports : vscode.CodeActionKind.QuickFix;
+  const action = new vscode.CodeAction(organize ? TITLE : `${TITLE} (${removed.length})`, kind);
   action.edit = edit;
   return [action];
 }
 
-function buildEdit(document: vscode.TextDocument): { edit: vscode.WorkspaceEdit; removed: string[] } {
+export function buildEdit(document: vscode.TextDocument): { edit: vscode.WorkspaceEdit; removed: string[] } {
   const before = document.getText();
   const { text, removed } = removeUnusedImports(before);
   const edit = new vscode.WorkspaceEdit();
