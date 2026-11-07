@@ -1,0 +1,66 @@
+{
+  "name": "php-namespace-mover",
+  "displayName": "PHP Namespace Mover",
+  "description": "Met à jour le namespace PHP (PSR-4) et ses références quand on déplace un fichier, comme PhpStorm.",
+  "version": "0.1.0",
+  "publisher": "nicolasruiz",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "activationEvents": [
+    "workspaceContains:**/composer.json"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "PHP Namespace Mover",
+      "properties": {
+        "phpNamespaceMover.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Mettre à jour les namespaces lors d'un déplacement de fichier PHP."
+        },
+        "phpNamespaceMover.exclude": {
+          "type": "string",
+          "default": "**/{vendor,node_modules,var,.git}/**",
+          "description": "Glob des fichiers ignorés lors de la mise à jour des références."
+        },
+        "phpNamespaceMover.referenceFiles": {
+          "type": "string",
+          "default": "**/*.{yaml,yml,xml,neon}",
+          "description": "Fichiers non-PHP dans lesquels remplacer les FQCN (config Symfony, mappings Doctrine…). Vide pour désactiver."
+        },
+        "phpNamespaceMover.preview": {
+          "type": "boolean",
+          "default": false,
+          "description": "Afficher l'aperçu de refactoring avant d'appliquer les modifications."
+        },
+        "phpNamespaceMover.autoSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enregistrer les fichiers modifiés."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -watch -p .",
+    "test": "tsc -p . && node --test out/test/*.test.js",
+    "package": "vsce package --skip-license"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "~1.90.0",
+    "@vscode/vsce": "^3.0.0",
+    "typescript": "^5.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicolasrz/php-namespace-mover"
+  }
+}

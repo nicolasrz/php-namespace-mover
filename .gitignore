@@ -1,0 +1,16 @@
+node_modules/
+out/
+*.vsix
+
+# IDE / assistants
+.idea/
+.vscode/
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+.cursor/
+
+# OS / divers
+.DS_Store
+*.log
+.env*
