@@ -2,7 +2,7 @@
 
 ## 0.2.0
 
-- Refactor Kit menu on `Ctrl+Alt+O`, showing only the relevant actions.
+- *PHP Refactor Kit: Menu* command, showing only the relevant actions. No default shortcut: bind the commands you want.
 - Remove unused imports (menu, quick fix, *Organize Imports*, on save).
 - *Fix namespace* when a file's namespace doesn't match its folder.
 - Kit actions available from `Cmd+.` anywhere in the class.

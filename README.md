@@ -6,9 +6,19 @@
 
 The PhpStorm PHP refactorings that VS Code is missing.
 
-**One shortcut for everything: `Ctrl+Alt+O`** (`Ctrl+Option+O` on macOS) opens the Refactor Kit menu, listing only
-the actions that make sense in the current file: *Implement methods*, *Remove unused imports*, *Fix namespace*.
-The same actions also show up in VS Code's quick fix menu (`Cmd+.` / `Ctrl+.`).
+Every action is in the command palette under **PHP Refactor Kit:**. *PHP Refactor Kit: Menu* lists only the actions
+that make sense in the current file (*Implement methods*, *Remove unused imports*, *Fix namespace*). They also show up
+in VS Code's quick fix menu (`Cmd+.` / `Ctrl+.`).
+
+No shortcut is set by default, so nothing clashes with your keyboard layout or other extensions. To get one, add it in
+*Preferences: Open Keyboard Shortcuts (JSON)*, for example:
+
+```json
+{ "key": "ctrl+alt+o", "command": "phpRefactorKit.menu", "when": "editorLangId == php" }
+```
+
+Commands: `phpRefactorKit.menu`, `phpRefactorKit.implementMethods`, `phpRefactorKit.removeUnusedImports`,
+`phpRefactorKit.fixNamespace`.
 
 ### Update namespaces when moving files
 
@@ -19,13 +29,13 @@ When you move (or rename) a PHP file or folder from the explorer, the extension 
 - `use` statements, FQCNs (`\App\...`) and escaped strings (`'App\\...'`) across the project, including YAML/XML/NEON files (Symfony services, Doctrine mappings…);
 - the `use` statements that become necessary for classes that shared the old namespace and were therefore used without an import.
 
-If a file's namespace no longer matches its folder (after a `git mv`, a copy-paste…), *Fix namespace* in the menu
-applies the same update.
+If a file's namespace no longer matches its folder (after a `git mv`, a copy-paste…), *Fix namespace* applies
+the same update.
 
 ### Implement methods
 
 On the declaration of a class that implements an interface or extends an abstract class, `Cmd+.` / `Ctrl+.` offers
-**Implement methods** (also in the command palette: *PHP: Implement methods*).
+**Implement methods** (also in the command palette and the menu).
 Each missing method is generated with its signature and a body that throws an exception:
 
 ```php
@@ -41,9 +51,9 @@ parent classes and traits. Required `use` statements are added. Common built-in 
 
 ### Remove unused imports
 
-From the menu, removes the `use` statements that are
+Removes the `use` statements that are
 not referenced in the code or in docblocks (`@param`, `@var`, `@throws`…). Grouped and comma-separated imports
-are trimmed item by item. Also available as *PHP: Remove unused imports* and through VS Code's *Organize Imports*,
+are trimmed item by item. Also available as *PHP Refactor Kit: Remove unused imports* and through VS Code's *Organize Imports*,
 so it can run on save:
 
 ```json
@@ -73,9 +83,19 @@ so it can run on save:
 
 Les refactorings PHP de PhpStorm qui manquent à VS Code.
 
-**Un seul raccourci pour tout : `Ctrl+Alt+O`** (`Ctrl+Option+O` sur macOS) ouvre le menu du kit, avec uniquement
-les actions pertinentes dans le fichier courant : *Implement methods*, *Remove unused imports*, *Fix namespace*.
-Les mêmes actions apparaissent aussi dans le menu des corrections rapides de VS Code (`Cmd+.` / `Ctrl+.`).
+Toutes les actions sont dans la palette de commandes sous **PHP Refactor Kit:**. *PHP Refactor Kit: Menu* liste
+uniquement les actions pertinentes dans le fichier courant (*Implement methods*, *Remove unused imports*,
+*Fix namespace*). Elles apparaissent aussi dans le menu des corrections rapides de VS Code (`Cmd+.` / `Ctrl+.`).
+
+Aucun raccourci n'est défini par défaut, pour ne pas entrer en conflit avec votre clavier ou d'autres extensions. Pour
+en ajouter un, dans *Preferences: Open Keyboard Shortcuts (JSON)*, par exemple :
+
+```json
+{ "key": "ctrl+alt+o", "command": "phpRefactorKit.menu", "when": "editorLangId == php" }
+```
+
+Commandes : `phpRefactorKit.menu`, `phpRefactorKit.implementMethods`, `phpRefactorKit.removeUnusedImports`,
+`phpRefactorKit.fixNamespace`.
 
 ### Namespace mis à jour au déplacement
 
@@ -87,12 +107,12 @@ Quand on déplace (ou renomme) un fichier ou un dossier PHP depuis l'explorateur
 - les `use` à ajouter pour les classes qui partageaient l'ancien namespace et étaient donc utilisées sans import.
 
 Si le namespace d'un fichier ne correspond plus à son dossier (après un `git mv`, un copier-coller…), *Fix namespace*
-dans le menu applique la même mise à jour.
+applique la même mise à jour.
 
 ### Implémenter les méthodes
 
 Sur la déclaration d'une classe qui implémente une interface ou étend une classe abstraite, `Cmd+.` / `Ctrl+.` propose
-**Implement methods** (aussi dans la palette : *PHP: Implement methods*).
+**Implement methods** (aussi dans la palette et le menu).
 Chaque méthode manquante est générée avec sa signature et un corps qui lève une exception :
 
 ```php
@@ -108,9 +128,9 @@ classes parentes et traits compris. Les `use` nécessaires sont ajoutés. Les in
 
 ### Supprimer les imports inutilisés
 
-Depuis le menu, supprime les `use` qui ne sont
+Supprime les `use` qui ne sont
 référencés ni dans le code ni dans les docblocks (`@param`, `@var`, `@throws`…). Les imports groupés ou séparés par
-des virgules sont nettoyés élément par élément. Aussi disponible via *PHP: Remove unused imports* et via
+des virgules sont nettoyés élément par élément. Aussi disponible via *PHP Refactor Kit: Remove unused imports* et via
 *Organize Imports* de VS Code, donc utilisable à l'enregistrement :
 
 ```json

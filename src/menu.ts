@@ -18,6 +18,14 @@ export function registerMenu(context: vscode.ExtensionContext): void {
       const choice = await vscode.window.showQuickPick(items, { title: 'PHP Refactor Kit' });
       await choice?.run();
     }),
+    vscode.commands.registerTextEditorCommand('phpRefactorKit.fixNamespace', async (editor) => {
+      const move = await namespaceFix(editor.document.uri);
+      if (!move) {
+        vscode.window.setStatusBarMessage('Namespace already matches the folder', 3000);
+        return;
+      }
+      await applyClassMoves(new Map([[editor.document.uri.fsPath, move]]));
+    }),
   );
 }
 
@@ -25,6 +33,9 @@ async function availableActions(document: vscode.TextDocument): Promise<MenuItem
   const items: MenuItem[] = [];
 
   const implementation = implement(document);
+  if (implementation?.unresolved.length) {
+    vscode.window.showWarningMessage(`PHP Refactor Kit: not found: ${implementation.unresolved.join(', ')}`);
+  }
   if (implementation?.methods.length) {
     items.push({
       label: '$(symbol-method) Implement methods',

@@ -86,18 +86,23 @@
     "commands": [
       {
         "command": "phpRefactorKit.menu",
-        "title": "Refactor Kit menu",
-        "category": "PHP"
+        "title": "Menu",
+        "category": "PHP Refactor Kit"
       },
       {
         "command": "phpRefactorKit.implementMethods",
         "title": "Implement methods",
-        "category": "PHP"
+        "category": "PHP Refactor Kit"
       },
       {
         "command": "phpRefactorKit.removeUnusedImports",
         "title": "Remove unused imports",
-        "category": "PHP"
+        "category": "PHP Refactor Kit"
+      },
+      {
+        "command": "phpRefactorKit.fixNamespace",
+        "title": "Fix namespace",
+        "category": "PHP Refactor Kit"
       }
     ],
     "menus": {
@@ -113,16 +118,13 @@
         {
           "command": "phpRefactorKit.removeUnusedImports",
           "when": "editorLangId == php"
+        },
+        {
+          "command": "phpRefactorKit.fixNamespace",
+          "when": "editorLangId == php"
         }
       ]
-    },
-    "keybindings": [
-      {
-        "command": "phpRefactorKit.menu",
-        "key": "ctrl+alt+o",
-        "when": "editorTextFocus && editorLangId == php"
-      }
-    ]
+    }
   },
   "scripts": {
     "compile": "tsc -p .",
